@@ -1,0 +1,42 @@
+{% extends "base.html" %} {% block header %}
+<style>
+  #chat-form {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  #messages {
+    padding-bottom: 10%;
+    padding-left: 20px;
+    padding-top: 20px;
+    max-height: 70%;
+    overflow: auto;
+  }
+  #chat-form input,
+  #chat-form button {
+    width: 90%;
+  }
+  #chat-form input::placeholder {
+    color: #b1b1b1;
+  }
+  #profile {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+</style>
+{% endblock %} {% block content %}
+<script src="/static/chat.js"></script>
+<strong id="profile" class="text-white"></strong>
+<div id="messages" class="bg-dark text-white"></div>
+<form class="form-inline" id="chat-form">
+  <input
+    type="text"
+    class="form-control bg-dark text-white"
+    placeholder="Write your message"
+  />
+  <button id="send" type="submit" class="btn btn-primary">Send</button>
+</form>
+
+{% endblock %}

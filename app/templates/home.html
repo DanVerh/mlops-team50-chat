@@ -1,0 +1,33 @@
+{% extends "base.html" %} {% block header %}
+<style>
+  #user-form {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+  }
+  #user-form input,
+  #user-form button {
+    width: 90%;
+  }
+  #user-form input::placeholder {
+    color: #b1b1b1;
+  }
+</style>
+{% endblock %} {% block content %}
+<script src="static/userform.js"></script>
+<form id="user-form">
+  <div class="mb-3">
+    <input
+      type="text"
+      class="form-control bg-dark text-white"
+      id="user_input"
+      placeholder="Enter your name"
+    />
+  </div>
+  <div class="d-grid">
+    <button id="start" type="submit" class="btn btn-primary">Start Chat</button>
+  </div>
+</form>
+{% endblock %}
