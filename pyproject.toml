@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "mlops-team50-chat"
+version = "0.1.0"
+description = ""
+authors = ["Ilya <ilya.trushchenko@carta.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+uvicorn = {extras = ["standard"], version = "^0.24.0.post1"}
+fastapi = "^0.104.1"
+jinja2 = "^3.1.2"
+httpx = "^0.25.1"
+python-dotenv = "^1.0.0"
+
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.7.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

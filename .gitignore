@@ -1,0 +1,15 @@
+# IDE
+.idea
+.vscode
+
+# python
+.ipynb_checkpoints
+.venv
+__pycache__
+.mypy_cache
+*.pyc
+
+.env
+
+# a helper to save empty dirs, this line should be the last one
+!*.gitkeep
