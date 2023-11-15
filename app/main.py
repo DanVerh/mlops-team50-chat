@@ -1,6 +1,8 @@
 import asyncio
+import logging
 import os
 import random
+import time
 from uuid import uuid4
 
 from censor import check_message_censorship
@@ -28,15 +30,11 @@ CENSOR_URL = os.getenv("CENSOR_URL")
 if not CENSOR_URL:
     raise EnvironmentError("CENSOR_URL should be set")
 
-
+logger = logging.getLogger("uvicorn")
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 manager = SocketManager()
-
-
-# def get_login(request: Request):
-#     return request.cookies.get("X-Authorization")
 
 
 @app.get("/")
@@ -85,9 +83,14 @@ async def chat(websocket: WebSocket):
                     # Handle the validation or value error
                     await websocket.send_json({"error": str(e)})
                 # Update the censorship mark based on the response
+                start_time = time.time()
                 censorship_response = await check_message_censorship(
                     message.content, CENSOR_URL
                 )
+                end_time = time.time()
+                latency_ms = (end_time - start_time) * 1000  # Convert to milliseconds
+                logger.info(f"Censorship check latency: {latency_ms:.2f} ms")
+                logger.info(f"Censorship status: {censorship_response}")
                 update_data = {
                     "message_id": message_id,
                     "censorship_status": censorship_response,

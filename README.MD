@@ -24,6 +24,9 @@ poetry install --no-root
 cp example.env .env
 ```
 
+`example.env` defaults to a fake censorship endpoint.
+To use a real model locally, change `CENSOR_URL` to `http://127.0.0.1:8001/censorship_status` after launching the model's web API
+
 ## Running Locally
 
 run `uvicorn main:app --reload` and open http://127.0.0.1:8000/ in your browser
